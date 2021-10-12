@@ -1,28 +1,19 @@
 #include <vector>
-
-typedef struct {
-    int x;
-    int y;
-} Point;
-
-void printPoint(Point &p) {
-    printf("x:%d y:%d", p.x, p.y);
-}
-
+#include "cpp-bf.hpp"
 
 int main() {
-    std::vector<Point> points;
     int n;
-
+    ClosestPairPointsBruteforce* cpp = new ClosestPairPointsBruteforce();
+    
     scanf("%d", &n);
+    
     for (int i = 0; i < n; i++) {
         Point p;
         scanf("%d %d", &p.x, &p.y);
-        points.push_back(p);
+        cpp->insert(p);
     }
     
-    for (int i = 0; i < n; i++) {
-        printPoint(points[i]);
-        printf("\n");
-    }
+    std::pair<Point, Point> result = cpp->closest_points();
+    
+    printf("<%d; %d> , <%d; %d>", result.first.x, result.first.y, result.second.x, result.second.y);
 }
